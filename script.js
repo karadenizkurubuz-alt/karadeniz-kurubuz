@@ -60,20 +60,23 @@ navLinks.forEach((link) => {
     }
 
     event.preventDefault();
-    const offset = header.offsetHeight + 16;
-    const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
 
-    window.scrollTo({
-      top: targetTop,
-      behavior: "smooth"
-    });
-
+    // Close menu FIRST, then scroll after layout settles
     if (mobileMenu.classList.contains("is-open")) {
       closeMobileMenu();
     }
+
+    setTimeout(() => {
+      const offset = header.offsetHeight + 16;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({
+        top: targetTop,
+        behavior: "smooth"
+      });
+    }, 300);
+
   });
 });
-
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
