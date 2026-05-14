@@ -60,7 +60,7 @@ navLinks.forEach((link) => {
     }
 
     event.preventDefault();
-    const offset = header.offsetHeight - 1;
+    const offset = header.offsetHeight + 16;
     const targetTop = target.getBoundingClientRect().top + window.scrollY - offset;
 
     window.scrollTo({
